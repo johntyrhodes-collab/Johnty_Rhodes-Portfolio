@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | STEEZ</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   RESET & BASE
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #0A1931;
+    color: #F6FAFD;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+:root {
+    --bg-dark: #0A1931;
+    --navy-deep: #1A3D63;
+    --blue-accent: #4A7FA7;
+    --blue-light: #B3CFE5;
+    --white: #F6FAFD;
+}
+
+/* =========================================
+   BACKGROUND WAVES & GLOWS
+========================================= */
+.background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+    background:
+        radial-gradient(circle at 75% 50%, rgba(74, 127, 167, 0.15), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(179, 207, 229, 0.05), transparent 25%),
+        #0A1931;
+}
+
+.wave {
+    position: absolute;
+    pointer-events: none;
+}
+
+.wave-1 {
+    width: 65%;
+    height: 150%;
+    left: -28%;
+    top: -25%;
+    background: linear-gradient(120deg, #1A3D63 0%, #0A1931 70%);
+    border-radius: 45% 55% 60% 40% / 35% 40% 60% 65%;
+    transform: rotate(17deg);
+    opacity: 0.4;
+}
+
+.wave-2 {
+    width: 65%;
+    height: 150%;
+    left: 15%;
+    top: -25%;
+    background: linear-gradient(125deg, #1A3D63, #0A1931);
+    border-radius: 55% 45% 35% 65% / 45% 50% 50% 55%;
+    transform: rotate(18deg);
+    opacity: 0.3;
+}
+
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74, 127, 167, 0.2), transparent 70%);
+    filter: blur(45px);
+}
+
+.glow-one { right: 2%; top: 15%; }
+.glow-two { left: 25%; bottom: -35%; opacity: 0.4; }
+
+/* =========================================
+   NAVIGATION
+========================================= */
+.navbar {
+    position: relative;
+    width: calc(100% - 90px);
+    max-width: 1400px;
+    height: 72px;
+    margin: 25px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.logo {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    right: -9px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    box-shadow: 0 0 10px var(--blue-light);
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 42px;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    color: var(--blue-light);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 0;
+    transition: 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    background: var(--blue-light);
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.hire {
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--blue-accent), var(--navy-deep));
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    transition: 0.3s ease;
+}
+
+.hire:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* =========================================
+   CONTACT MAIN SECTION
+========================================= */
+.contact-container {
+    flex: 1;
+    width: calc(100% - 90px);
+    max-width: 1100px;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 15px;
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--blue-light);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--blue-light);
+}
+
+.section-header h2 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(100deg, var(--white) 20%, var(--blue-light) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    color: var(--blue-light);
+    font-size: 14px;
+    max-width: 550px;
+    margin: 0 auto;
+    opacity: 0.85;
+}
+
+/* =========================================
+   SOCIAL CTA GRID (DARK GRADIENT FOOTER-STYLE)
+========================================= */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.social-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(26, 61, 99, 0.45), rgba(10, 25, 49, 0.8));
+    border: 1px solid rgba(179, 207, 229, 0.15);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--white);
+    backdrop-filter: blur(15px);
+    transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74, 127, 167, 0.2), transparent);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(179, 207, 229, 0.4);
+    box-shadow: 0 20px 40px rgba(10, 25, 49, 0.8);
+}
+
+.social-card:hover::before {
+    opacity: 1;
+}
+
+.social-icon {
+    width: 55px;
+    height: 55px;
+    background: rgba(74, 127, 167, 0.15);
+    border: 1px solid rgba(179, 207, 229, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    transition: 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+    background: var(--navy-deep);
+    transform: scale(1.1);
+}
+
+.social-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.social-card p {
+    color: var(--blue-light);
+    font-size: 12.5px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.social-cta-btn {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue-light);
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s ease;
+}
+
+.social-card:hover .social-cta-btn {
+    color: var(--white);
+    gap: 10px;
+}
+
+/* =========================================
+   FOOTER BOTTOM COPYRIGHT
+========================================= */
+.footer-bottom {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 12px;
+    color: var(--blue-light);
+    opacity: 0.6;
+    border-top: 1px solid rgba(179, 207, 229, 0.08);
+    width: 100%;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+.menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px;
+    background: var(--white);
+    transition: 0.3s ease;
+}
+
+@media (max-width: 850px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .navbar {
+        width: calc(100% - 35px);
+        margin-top: 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        left: 18px;
+        right: 18px;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(10, 25, 49, 0.97);
+        border: 1px solid rgba(74, 127, 167, 0.2);
+        backdrop-filter: blur(20px);
+        transition: 0.3s ease;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a {
+        text-align: center;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .hire {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND DESIGN -->
+<div class="background">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+</div>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">STEEZ</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="hire.html" class="hire">Hire Me ↗</a>
+    <button class="menu" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<!-- CONTACT CONTAINER -->
+<main class="contact-container">
+    <div class="section-header">
+        <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Get In Touch
+        </div>
+        <h2>Let's Build Something Iconic</h2>
+        <p>Reach out directly via your preferred platform below. Fast responses guaranteed for inquiries and collaborations.</p>
+    </div>
+
+    <!-- SOCIAL CTA CARDS -->
+    <div class="social-grid">
+        
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="social-card">
+            <div class="social-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p>Direct chat for rapid inquiries, fast quotes, and project kickoffs.</p>
+            <span class="social-cta-btn">Open Chat ↗</span>
+        </a>
+
+        <!-- Instagram CTA -->
+        <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="social-card">
+            <div class="social-icon">📸</div>
+            <h3>Instagram</h3>
+            <p>Explore daily creative drops, design logs, and behind-the-scenes content.</p>
+            <span class="social-cta-btn">Follow Us ↗</span>
+        </a>
+
+        <!-- Discord CTA -->
+        <a href="https://discord.gg/YOUR_INVITE" target="_blank" class="social-card">
+            <div class="social-icon">🎧</div>
+            <h3>Discord</h3>
+            <p>Join the community server for real-time collaboration and chat rooms.</p>
+            <span class="social-cta-btn">Join Server ↗</span>
+        </a>
+
+    </div>
+</main>
+
+<!-- FOOTER COPYRIGHT -->
+<footer class="footer-bottom">
+    <p>&copy; 2026 STEEZ. All rights reserved.</p>
+</footer>
+
+<!-- JAVASCRIPT FOR MOBILE MENU -->
+<script>
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", () => {
+        nav.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+        });
+    });
+</script>
+
+</body>
+</html>

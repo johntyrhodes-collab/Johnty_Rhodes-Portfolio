@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hire Me & Consultation | STEEZ</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #0A1931;
+    color: #F6FAFD;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   VARIABLES & PALETTE
+========================================= */
+
+:root {
+    --bg-dark: #0A1931;
+    --navy-deep: #1A3D63;
+    --blue-accent: #4A7FA7;
+    --blue-light: #B3CFE5;
+    --white: #F6FAFD;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(74, 127, 167, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(179, 207, 229, 0.05),
+            transparent 25%
+        ),
+        #0A1931;
+}
+
+.wave {
+    position: absolute;
+    pointer-events: none;
+}
+
+.wave-1 {
+    width: 65%;
+    height: 150%;
+    left: -28%;
+    top: -25%;
+    background: linear-gradient(120deg, #1A3D63 0%, #0A1931 70%);
+    border-radius: 45% 55% 60% 40% / 35% 40% 60% 65%;
+    transform: rotate(17deg);
+    opacity: 0.4;
+}
+
+.wave-2 {
+    width: 65%;
+    height: 150%;
+    left: 15%;
+    top: -25%;
+    background: linear-gradient(125deg, #1A3D63, #0A1931);
+    border-radius: 55% 45% 35% 65% / 45% 50% 50% 55%;
+    transform: rotate(18deg);
+    opacity: 0.3;
+}
+
+.wave-3 {
+    width: 60%;
+    height: 145%;
+    right: -18%;
+    top: -20%;
+    background: linear-gradient(125deg, #1A3D63, #0A1931);
+    border-radius: 60% 40% 45% 55% / 40% 55% 45% 60%;
+    transform: rotate(20deg);
+    opacity: 0.3;
+}
+
+
+/* =========================================
+   BLUE GLOW
+========================================= */
+
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74, 127, 167, 0.2), transparent 70%);
+    filter: blur(45px);
+}
+
+.glow-one { right: 2%; top: 15%; }
+.glow-two { left: 25%; bottom: -35%; opacity: 0.4; }
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+    position: relative;
+    width: calc(100% - 90px);
+    max-width: 1400px;
+    height: 72px;
+    margin: 25px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.logo {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    right: -9px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    box-shadow: 0 0 10px var(--blue-light);
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 42px;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    color: var(--blue-light);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 0;
+    transition: 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    background: var(--blue-light);
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.hire {
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--blue-accent), var(--navy-deep));
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    transition: 0.3s ease;
+}
+
+.hire:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+
+/* =========================================
+   PAGE CONTENT (HIRE & CONSULTATION)
+========================================= */
+
+.page-container {
+    width: calc(100% - 90px);
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    position: relative;
+    z-index: 10;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 15px;
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.section-header h2 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(100deg, var(--white) 20%, var(--blue-light) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    color: var(--blue-light);
+    font-size: 14px;
+    max-width: 550px;
+    margin: 0 auto;
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   THREE HIRE CARDS GRID
+========================================= */
+
+.hire-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 70px;
+}
+
+.hire-card {
+    background: rgba(26, 61, 99, 0.45);
+    border: 1px solid rgba(179, 207, 229, 0.2);
+    border-radius: 20px;
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hire-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(179, 207, 229, 0.5);
+    background: rgba(26, 61, 99, 0.7);
+    box-shadow: 0 20px 40px rgba(10, 25, 49, 0.6);
+}
+
+.card-icon-wrapper {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(74, 127, 167, 0.25);
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    font-size: 26px;
+}
+
+.hire-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+}
+
+.card-quote {
+    font-style: italic;
+    color: var(--blue-light);
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    flex-grow: 1;
+}
+
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    color: var(--white);
+    background: var(--navy-deep);
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: 0.3s ease;
+}
+
+.card-btn:hover {
+    background: var(--blue-accent);
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   CONSULTATION SECTION
+========================================= */
+
+.consultation-box {
+    background: linear-gradient(135deg, rgba(26, 61, 99, 0.6), rgba(10, 25, 49, 0.8));
+    border: 1px solid rgba(74, 127, 167, 0.3);
+    border-radius: 24px;
+    padding: 50px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    backdrop-filter: blur(20px);
+}
+
+.consultation-content {
+    max-width: 600px;
+}
+
+.consultation-content h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    color: var(--white);
+}
+
+.consultation-content p {
+    color: var(--blue-light);
+    font-size: 13.5px;
+    line-height: 1.7;
+    opacity: 0.85;
+}
+
+.consultation-action {
+    flex-shrink: 0;
+}
+
+.consultation-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 30px;
+    border-radius: 50px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue-accent), var(--navy-deep));
+    border: 1px solid rgba(179, 207, 229, 0.4);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    box-shadow: 0 10px 25px rgba(10, 25, 49, 0.5);
+    transition: 0.3s ease;
+}
+
+.consultation-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: var(--white);
+}
+
+
+/* =========================================
+   MOBILE MENU & RESPONSIVE DESIGN
+========================================= */
+
+.menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px;
+    background: var(--white);
+    transition: 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .hire-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .consultation-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 20px;
+    }
+
+    .consultation-action {
+        width: 100%;
+    }
+
+    .consultation-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .navbar {
+        width: calc(100% - 35px);
+        margin-top: 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        left: 18px;
+        right: 18px;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(10, 25, 49, 0.97);
+        border: 1px solid rgba(74, 127, 167, 0.2);
+        backdrop-filter: blur(20px);
+        transition: 0.3s ease;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a {
+        text-align: center;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .hire {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .page-container {
+        width: calc(100% - 35px);
+        margin-top: 25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND DESIGN -->
+<div class="background">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+</div>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">STEEZ</a>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="hire.html" class="hire">Hire Me ↗</a>
+    <button class="menu" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<!-- PAGE MAIN CONTENT -->
+<main class="page-container">
+    <div class="section-header">
+        <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Collaboration Channels
+        </div>
+        <h2>Choose Your Way To Work</h2>
+        <p>Let's collaborate directly or through your preferred freelance marketplace to build something exceptional together.</p>
+    </div>
+
+    <!-- THREE BOXES -->
+    <section class="hire-grid">
+        <!-- Box 1: Direct Hire -->
+        <div class="hire-card">
+            <div class="card-icon-wrapper">
+                💼
+            </div>
+            <h3>Direct Hire</h3>
+            <p class="card-quote">"Skip the middleman. Direct collaboration means clear communication, custom terms, and focused execution."</p>
+            <a href="#consultation" class="card-btn">Connect Direct ↗</a>
+        </div>
+
+        <!-- Box 2: Fiverr -->
+        <div class="hire-card">
+            <div class="card-icon-wrapper">
+                🟢
+            </div>
+            <h3>Fiverr Pro</h3>
+            <p class="card-quote">"Speed, security, and structured packages ready for fast-paced digital projects and rapid delivery."</p>
+            <a href="https://www.fiverr.com" target="_blank" rel="noopener" class="card-btn">View Fiverr ↗</a>
+        </div>
+
+        <!-- Box 3: Upwork -->
+        <div class="hire-card">
+            <div class="card-icon-wrapper">
+                ⚡
+            </div>
+            <h3>Upwork</h3>
+            <p class="card-quote">"Flexible milestones, comprehensive contract protection, and trusted long-term partnership setups."</p>
+            <a href="https://www.upwork.com" target="_blank" rel="noopener" class="card-btn">View Upwork ↗</a>
+        </div>
+    </section>
+
+    <!-- FREE CONSULTATION APPOINTMENT SECTION -->
+    <section class="consultation-box" id="consultation">
+        <div class="consultation-content">
+            <h3>Book a Free Consultation</h3>
+            <p>Not sure where to start? Let's discuss your project goals, timelines, and requirements in a complimentary 30-minute discovery call.</p>
+        </div>
+        <div class="consultation-action">
+            <a href="mailto:johnty@steez.com?subject=Free%20Consultation%20Request" class="consultation-btn">
+                Schedule Appointment ↗
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- JAVASCRIPT FOR MOBILE MENU -->
+<script>
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", () => {
+        nav.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+        });
+    });
+</script>
+
+</body>
+</html>

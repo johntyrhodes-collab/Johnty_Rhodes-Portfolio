@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO META TAGS -->
+<title>About Me | STEEZ - Freelance Creative Designer & Developer</title>
+<meta name="description" content="Learn more about STEEZ, a freelance creative designer and developer specializing in modern UI/UX website design, brand identity, logo design, creative ad generation, and digital experiences.">
+<meta name="keywords" content="STEEZ, Creative Designer, Web Developer, Freelance Designer, UI/UX, Logo Design, Brand Identity, Ad Creatives">
+<meta name="author" content="STEEZ">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   RESET & BASE STYLES
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #0A1931;
+    color: #F6FAFD;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+:root {
+    --bg-dark: #0A1931;
+    --navy-deep: #1A3D63;
+    --blue-accent: #4A7FA7;
+    --blue-light: #B3CFE5;
+    --white: #F6FAFD;
+}
+
+/* =========================================
+   BACKGROUND DESIGN
+========================================= */
+.background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+    background:
+        radial-gradient(circle at 75% 50%, rgba(74, 127, 167, 0.15), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(179, 207, 229, 0.05), transparent 25%),
+        #0A1931;
+}
+
+.wave {
+    position: absolute;
+    pointer-events: none;
+}
+
+.wave-1 {
+    width: 65%;
+    height: 150%;
+    left: -28%;
+    top: -25%;
+    background: linear-gradient(120deg, #1A3D63 0%, #0A1931 70%);
+    border-radius: 45% 55% 60% 40% / 35% 40% 60% 65%;
+    transform: rotate(17deg);
+    opacity: 0.4;
+}
+
+.wave-2 {
+    width: 65%;
+    height: 150%;
+    left: 15%;
+    top: -25%;
+    background: linear-gradient(125deg, #1A3D63, #0A1931);
+    border-radius: 55% 45% 35% 65% / 45% 50% 50% 55%;
+    transform: rotate(18deg);
+    opacity: 0.3;
+}
+
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74, 127, 167, 0.2), transparent 70%);
+    filter: blur(45px);
+}
+
+.glow-one { right: 2%; top: 15%; }
+.glow-two { left: 25%; bottom: -35%; opacity: 0.4; }
+
+/* =========================================
+   NAVIGATION
+========================================= */
+.navbar {
+    position: relative;
+    width: calc(100% - 90px);
+    max-width: 1400px;
+    height: 72px;
+    margin: 25px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.logo {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    right: -9px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    box-shadow: 0 0 10px var(--blue-light);
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 42px;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    color: var(--blue-light);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 0;
+    transition: 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    background: var(--blue-light);
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.hire {
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--blue-accent), var(--navy-deep));
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    transition: 0.3s ease;
+}
+
+.hire:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* =========================================
+   ABOUT CONTENT LAYOUT
+========================================= */
+.about-container {
+    width: calc(100% - 90px);
+    max-width: 1000px;
+    margin: 60px auto 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 15px;
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--blue-light);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--blue-light);
+}
+
+.about-header h1 {
+    font-size: clamp(38px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(100deg, var(--white) 20%, var(--blue-light) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+}
+
+.tagline-sub {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-light);
+    letter-spacing: -0.01em;
+}
+
+/* Content Cards Grid */
+.about-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.about-card {
+    background: rgba(26, 61, 99, 0.35);
+    border: 1px solid rgba(179, 207, 229, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    transition: 0.3s ease;
+}
+
+.about-card:hover {
+    border-color: rgba(179, 207, 229, 0.35);
+    background: rgba(26, 61, 99, 0.5);
+    box-shadow: 0 20px 40px rgba(10, 25, 49, 0.6);
+}
+
+.about-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+}
+
+.about-card p {
+    color: var(--blue-light);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.88;
+    margin-bottom: 16px;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Services Grid inside Card */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.service-item {
+    background: rgba(10, 25, 49, 0.4);
+    border: 1px solid rgba(179, 207, 229, 0.1);
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.service-item span {
+    color: var(--blue-light);
+    font-size: 12px;
+}
+
+/* Interests Tags */
+.interests-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.interest-pill {
+    background: rgba(74, 127, 167, 0.15);
+    border: 1px solid rgba(179, 207, 229, 0.2);
+    color: var(--blue-light);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+/* Outro Quote Box */
+.outro-card {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(26, 61, 99, 0.5), rgba(10, 25, 49, 0.8));
+    border: 1px solid rgba(179, 207, 229, 0.25);
+}
+
+.outro-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.outro-card .console-text {
+    font-size: 16px;
+    color: var(--blue-light);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.mindset-box {
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer-bottom {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 12px;
+    color: var(--blue-light);
+    opacity: 0.6;
+    border-top: 1px solid rgba(179, 207, 229, 0.08);
+    width: 100%;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+.menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px;
+    background: var(--white);
+    transition: 0.3s ease;
+}
+
+@media (max-width: 850px) {
+    .navbar {
+        width: calc(100% - 35px);
+        margin-top: 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        left: 18px;
+        right: 18px;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(10, 25, 49, 0.97);
+        border: 1px solid rgba(74, 127, 167, 0.2);
+        backdrop-filter: blur(20px);
+        transition: 0.3s ease;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a {
+        text-align: center;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .hire {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .about-container {
+        width: calc(100% - 30px);
+        margin-top: 40px;
+    }
+
+    .about-card {
+        padding: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND DESIGN -->
+<div class="background">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+</div>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">STEEZ</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="hire.html" class="hire">Hire Me ↗</a>
+    <button class="menu" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<!-- MAIN ABOUT CONTAINER -->
+<main class="about-container">
+    
+    <div class="about-header">
+        <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            About STEEZ Brand Identity
+        </div>
+        <h1>New Console, Old Game.</h1>
+        <div class="tagline-sub">Freelance Creative Designer & Developer</div>
+    </div>
+
+    <div class="about-sections">
+        
+        <!-- Section 1: Overview -->
+        <section class="about-card">
+            <h3>About Me</h3>
+            <p>I’m a freelance creative designer focused on creating modern, creative, and visually engaging digital experiences for brands, businesses, and individuals under the creative banner of <strong>STEEZ</strong>.</p>
+            <p>From posters and advertising creatives to image compositions, logo design, brand visuals, and websites, I provide end-to-end creative solutions that turn ideas into polished digital experiences.</p>
+            <p>My approach combines creative thinking, modern design, technology, and attention to detail to create work that not only looks good but also communicates with purpose.</p>
+        </section>
+
+        <!-- Section 2: Technical Approach -->
+        <section class="about-card">
+            <h3>From Idea to Final Experience</h3>
+            <p>A great digital project is more than just its visual appearance.</p>
+            <p>I work across both design and web development, bringing different technologies together to create complete digital experiences. From front-end technologies such as HTML, CSS, and JavaScript to backend systems, APIs, and databases, every part has a role in bringing the final product to life.</p>
+            <p>Different projects require different languages, tools, and technologies. I choose the right combination based on the project's requirements, ensuring the final result is functional, responsive, modern, and built around the client's goals.</p>
+        </section>
+
+        <!-- Section 3: What I Create -->
+        <section class="about-card">
+            <h3>What I Create</h3>
+            <div class="services-grid">
+                <div class="service-item"><span>✦</span> Creative Posters & Advertisements</div>
+                <div class="service-item"><span>✦</span> Social Media & Digital Ad Creatives</div>
+                <div class="service-item"><span>✦</span> Logo & Brand Identity Design</div>
+                <div class="service-item"><span>✦</span> Image Editing & Visual Compositions</div>
+                <div class="service-item"><span>✦</span> Modern Website Design</div>
+                <div class="service-item"><span>✦</span> Responsive Websites & Landing Pages</div>
+                <div class="service-item"><span>✦</span> Business Websites</div>
+                <div class="service-item"><span>✦</span> End-to-End Creative & Web Projects</div>
+            </div>
+        </section>
+
+        <!-- Section 4: Perspective & Influences -->
+        <section class="about-card">
+            <h3>Design With a Different Perspective</h3>
+            <p>Creativity doesn't come from staring at a blank canvas forever. It comes from everything around you.</p>
+            <p>I’m heavily interested in MotoGP, Formula 1, UFC, and cricket, and I enjoy the strategy, competition, speed, precision, and personalities behind each of them. I’m also a fan of story-driven series like Breaking Bad, Prison Break, and Lupin.</p>
+            <p>Those interests naturally influence the way I look at creative work: strategy matters, details matter, timing matters, and every project needs its own identity.</p>
+            
+            <div class="interests-tags">
+                <span class="interest-pill">MotoGP</span>
+                <span class="interest-pill">Formula 1</span>
+                <span class="interest-pill">UFC</span>
+                <span class="interest-pill">Cricket</span>
+                <span class="interest-pill">Breaking Bad</span>
+                <span class="interest-pill">Prison Break</span>
+                <span class="interest-pill">Lupin</span>
+            </div>
+        </section>
+
+        <!-- Section 5: Current Status -->
+        <section class="about-card">
+            <h3>Currently Freelancing</h3>
+            <p>I currently work as a freelance creative designer, providing complete client solutions from concept and design to development and final delivery.</p>
+            <p>Whether it's a visual identity, advertising campaign, creative artwork, or a complete website, I focus on creating work that feels modern, purposeful, and built to stand out.</p>
+        </section>
+
+        <!-- Section 6: Outro -->
+        <section class="about-card outro-card">
+            <h3>New Console, Old Game.</h3>
+            <div class="console-text">Different tools. Different technologies. Different projects.</div>
+            <p>The mindset stays the same:</p>
+            <div class="mindset-box">Create. Build. Deliver.</div>
+        </section>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer-bottom">
+    <p>&copy; 2026 STEEZ. All rights reserved.</p>
+</footer>
+
+<!-- JAVASCRIPT FOR MOBILE MENU -->
+<script>
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", () => {
+        nav.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+        });
+    });
+</script>
+
+</body>
+</html>
