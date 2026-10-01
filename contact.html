@@ -187,6 +187,12 @@ body {
     width: 100%;
 }
 
+.menu-right-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .hire {
     color: var(--white);
     text-decoration: none;
@@ -389,6 +395,7 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 5px;
 }
 
 .menu span {
@@ -413,36 +420,64 @@ body {
 
     .nav-links {
         position: fixed;
-        top: 75px;
-        left: 18px;
+        top: 80px;
         right: 18px;
-        transform: translateY(-20px);
+        left: auto;
+        transform: translateY(-15px) scale(0.95);
         opacity: 0;
         visibility: hidden;
         flex-direction: column;
-        gap: 0;
-        padding: 15px;
-        border-radius: 18px;
-        background: rgba(10, 25, 49, 0.97);
-        border: 1px solid rgba(74, 127, 167, 0.2);
+        gap: 10px;
+        padding: 16px;
+        width: 240px;
+        border-radius: 20px;
+        background: rgba(26, 61, 99, 0.95);
+        border: 1px solid rgba(179, 207, 229, 0.25);
+        box-shadow: 0 20px 40px rgba(10, 25, 49, 0.7);
         backdrop-filter: blur(20px);
-        transition: 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav-links.open {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
         visibility: visible;
     }
 
+    .nav-links li {
+        width: 100%;
+    }
+
     .nav-links a {
+        display: block;
         text-align: center;
         width: 100%;
-        padding: 15px;
+        padding: 12px 20px;
+        background: rgba(10, 25, 49, 0.4);
+        border: 1px solid rgba(179, 207, 229, 0.15);
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--blue-light);
+        text-decoration: none !important;
+        transition: 0.2s ease;
+    }
+
+    .nav-links a::after {
+        display: none !important;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: var(--blue-accent);
+        color: var(--white);
+        border-color: var(--blue-accent);
     }
 
     .hire {
-        display: none;
+        display: inline-block !important;
+        padding: 8px 14px;
+        font-size: 10px;
     }
 
     .menu {
@@ -471,12 +506,14 @@ body {
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
-    <a href="hire.html" class="hire">Hire Me ↗</a>
-    <button class="menu" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <div class="menu-right-group">
+        <a href="hire.html" class="hire">Hire Me ↗</a>
+        <button class="menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </header>
 
 <!-- CONTACT CONTAINER -->
