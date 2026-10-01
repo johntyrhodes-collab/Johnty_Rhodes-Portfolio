@@ -4,13 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hire Me & Consultation | STEEZ</title>
+<title>Hire Me & Consultation | Johnty Rhodes</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
+<style>/* Default desktop layout */
+  .portfolio-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* Automatically switch to stacked layout on mobile and tablets */
+  @media (max-width: 768px) {
+    .portfolio-container {
+      flex-direction: column; 
+    }
+  }
 
 /* =========================================
    RESET
@@ -418,12 +430,142 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     box-shadow: 0 10px 25px rgba(10, 25, 49, 0.5);
+    cursor: pointer;
     transition: 0.3s ease;
 }
 
 .consultation-btn:hover {
     transform: translateY(-4px) scale(1.03);
     border-color: var(--white);
+}
+
+
+/* =========================================
+   BOOKING MODAL POPUP STYLES
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 25, 49, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1A3D63;
+    border: 1px solid var(--blue-accent);
+    padding: 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    color: var(--white);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--blue-light);
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--white);
+}
+
+.modal-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+
+.modal-content p {
+    font-size: 13px;
+    color: var(--blue-light);
+    margin-bottom: 15px;
+    opacity: 0.85;
+}
+
+/* Availability info highlight pill */
+.availability-note {
+    background: rgba(74, 127, 167, 0.2);
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 11.5px;
+    color: var(--blue-light);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: var(--blue-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.modal-content input, 
+.modal-content select {
+    width: 100%;
+    padding: 12px 14px;
+    background: #0A1931;
+    border: 1px solid rgba(179, 207, 229, 0.3);
+    color: var(--white);
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* Calendar Date Picker specific styling for dark theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.modal-content input:focus, 
+.modal-content select:focus {
+    border-color: var(--blue-light);
+}
+
+.submit-booking-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--blue-accent), var(--navy-deep));
+    color: var(--white);
+    border: 1px solid rgba(179, 207, 229, 0.4);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.submit-booking-btn:hover {
+    background: var(--blue-accent);
+    transform: scale(1.02);
 }
 
 
@@ -539,7 +681,7 @@ body {
 
 <!-- NAVIGATION -->
 <header class="navbar">
-    <a href="index.html" class="logo">STEEZ</a>
+    <a href="index.html" class="logo">Johnty Rhodes</a>
     <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="work.html">Work</a></li>
@@ -605,15 +747,60 @@ body {
             <p>Not sure where to start? Let's discuss your project goals, timelines, and requirements in a complimentary 30-minute discovery call.</p>
         </div>
         <div class="consultation-action">
-            <a href="mailto:johnty@steez.com?subject=Free%20Consultation%20Request" class="consultation-btn">
+            <button type="button" class="consultation-btn" onclick="openBookingModal()">
                 Schedule Appointment ↗
-            </a>
+            </button>
         </div>
     </section>
 </main>
 
-<!-- JAVASCRIPT FOR MOBILE MENU -->
+<!-- BOOKING MODAL POPUP -->
+<div id="bookingModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+        <h3>Schedule Your Consultation</h3>
+        <p>Select your preferred 30-minute time slot based on availability.</p>
+        
+        <!-- Availability info line -->
+        <div class="availability-note">
+            📅 <strong>Availability (IST):</strong> Weekdays (11:00 AM – 1:30 PM) | Weekends (12:00 PM – 4:00 PM)
+        </div>
+        
+        <form id="consultationForm" onsubmit="handleBooking(event)">
+            <label>Your Name:</label>
+            <input type="text" id="clientName" required placeholder="Enter your full name">
+
+            <label>Your Email:</label>
+            <input type="email" id="clientEmail" required placeholder="name@example.com">
+
+            <label>Select Service:</label>
+            <select id="serviceType">
+                <option value="Logo Design">Logo Design</option>
+                <option value="Website Development">Website Development</option>
+                <option value="Brand Identity">Brand Identity</option>
+                <option value="Content Production">Content Production</option>
+            </select>
+
+            <label>Select Date:</label>
+            <input type="date" id="callDate" required onchange="updateTimeSlots()">
+
+            <label>Select Time Slot:</label>
+            <select id="timeSlot" required>
+                <option value="">-- First select a date above --</option>
+            </select>
+
+            <button type="submit" class="submit-booking-btn">Confirm & Connect via WhatsApp</button>
+        </form>
+    </div>
+</div>
+
+<!-- JAVASCRIPT FOR MOBILE MENU, DYNAMIC 30-MIN SLOTS & BOOKING MODAL -->
 <script>
+    // Set minimum date to today automatically
+    const todayStr = new Date().toISOString().split('T')[0];
+    document.getElementById('callDate').min = todayStr;
+
+    // Mobile Menu Toggle
     const menu = document.querySelector(".menu");
     const nav = document.querySelector(".nav-links");
 
@@ -626,6 +813,96 @@ body {
             nav.classList.remove("open");
         });
     });
+
+    // Modal Control Functions
+    function openBookingModal() {
+        document.getElementById('bookingModal').style.display = 'flex';
+    }
+
+    function closeBookingModal() {
+        document.getElementById('bookingModal').style.display = 'none';
+    }
+
+    // Dynamically populate 30-minute time slots based on Weekday vs Weekend selection
+    function updateTimeSlots() {
+        const dateInput = document.getElementById('callDate').value;
+        const timeSlotSelect = document.getElementById('timeSlot');
+        
+        timeSlotSelect.innerHTML = ""; // Clear existing slots
+
+        if (!dateInput) {
+            const defaultOpt = document.createElement('option');
+            defaultOpt.value = "";
+            defaultOpt.textContent = "-- First select a date above --";
+            timeSlotSelect.appendChild(defaultOpt);
+            return;
+        }
+
+        const selectedDate = new Date(dateInput);
+        const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 6 = Saturday
+
+        let slots = [];
+        // Check if Weekend (Saturday = 6, Sunday = 0) -> 12:00 PM to 4:00 PM in 30-min intervals
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            slots = [
+                "12:00 PM - 12:30 PM",
+                "12:30 PM - 01:00 PM",
+                "01:00 PM - 01:30 PM",
+                "01:30 PM - 02:00 PM",
+                "02:00 PM - 02:30 PM",
+                "02:30 PM - 03:00 PM",
+                "03:00 PM - 03:30 PM",
+                "03:30 PM - 04:00 PM"
+            ];
+        } else {
+            // Weekdays (Monday - Friday: 11:00 AM to 1:30 PM in 30-min intervals)
+            slots = [
+                "11:00 AM - 11:30 AM",
+                "11:30 AM - 12:00 PM",
+                "12:00 PM - 12:30 PM",
+                "12:30 PM - 01:00 PM",
+                "01:00 PM - 01:30 PM"
+            ];
+        }
+
+        slots.forEach(slot => {
+            const opt = document.createElement('option');
+            opt.value = slot;
+            opt.textContent = slot;
+            timeSlotSelect.appendChild(opt);
+        });
+    }
+
+    // Handle Form Submission & WhatsApp Data Formatting
+    function handleBooking(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('clientName').value;
+        const email = document.getElementById('clientEmail').value;
+        const service = document.getElementById('serviceType').value;
+        const date = document.getElementById('callDate').value;
+        const time = document.getElementById('timeSlot').value;
+
+        // Format structured message for WhatsApp including selected calendar date & 30-min slot
+        const whatsappMessage = encodeURIComponent(
+            `Hi Johnty, I want to schedule a consultation session.\n\n*Name:* ${name}\n*Email:* ${email}\n*Service:* ${service}\n*Date:* ${date}\n*Time Slot:* ${time} (IST)`
+        );
+        
+        // Replace 91YOURPHONENUMBER with your WhatsApp number (include country code like 91, no + or spaces)
+        const whatsappNumber = "91YOURPHONENUMBER"; 
+
+        window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+        
+        closeBookingModal();
+    }
+
+    // Close modal if user clicks outside the content box
+    window.onclick = function(event) {
+        const modal = document.getElementById('bookingModal');
+        if (event.target == modal) {
+            closeBookingModal();
+        }
+    }
 </script>
 
 </body>
