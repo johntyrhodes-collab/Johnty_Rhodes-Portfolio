@@ -10,19 +10,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>/* Default desktop layout */
-  .portfolio-container {
+<style>
+/* Default desktop layout */
+.portfolio-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-  }
+}
 
-  /* Automatically switch to stacked layout on mobile and tablets */
-  @media (max-width: 768px) {
+/* Automatically switch to stacked layout on mobile and tablets */
+@media (max-width: 768px) {
     .portfolio-container {
-      flex-direction: column; 
+        flex-direction: column; 
     }
-  }
+}
 
 /* =========================================
    RESET
@@ -511,6 +512,12 @@ body {
    MOBILE MENU & RESPONSIVE DESIGN
 ========================================= */
 
+.menu-right-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .menu {
     display: none;
     background: transparent;
@@ -565,10 +572,14 @@ body {
         text-align: center;
         width: 100%;
         padding: 15px;
+        text-decoration: none !important; /* Fixes any unexpected strike-through */
     }
 
+    /* Keep Hire Me visible on mobile */
     .hire {
-        display: none;
+        display: inline-block !important;
+        padding: 8px 14px;
+        font-size: 10px;
     }
 
     .menu {
@@ -629,12 +640,14 @@ body {
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a href="hire.html" class="hire">Hire Me ↗</a>
-    <button class="menu" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <div class="menu-right-group">
+        <a href="hire.html" class="hire">Hire Me ↗</a>
+        <button class="menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </header>
 
 <!-- HERO SECTION -->
