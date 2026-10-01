@@ -10,19 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>/* Default desktop layout */
-  .portfolio-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  /* Automatically switch to stacked layout on mobile and tablets */
-  @media (max-width: 768px) {
-    .portfolio-container {
-      flex-direction: column; 
-    }
-  }
+<style>
 
 /* =========================================
    RESET
@@ -368,6 +356,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     transition: 0.3s ease;
+    cursor: pointer;
 }
 
 .card-btn:hover {
@@ -500,7 +489,6 @@ body {
     opacity: 0.85;
 }
 
-/* Availability info highlight pill */
 .availability-note {
     background: rgba(74, 127, 167, 0.2);
     border: 1px solid rgba(179, 207, 229, 0.3);
@@ -536,7 +524,6 @@ body {
     transition: border-color 0.2s;
 }
 
-/* Calendar Date Picker specific styling for dark theme */
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
@@ -570,7 +557,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 /* =========================================
-   MOBILE MENU & RESPONSIVE DESIGN
+   MOBILE MENU & RESPONSIVE DESIGN (FIXED)
 ========================================= */
 
 .menu {
@@ -683,7 +670,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 <header class="navbar">
     <a href="index.html" class="logo">Johnty Rhodes</a>
     <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -716,7 +703,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             </div>
             <h3>Direct Hire</h3>
             <p class="card-quote">"Skip the middleman. Direct collaboration means clear communication, custom terms, and focused execution."</p>
-            <a href="#consultation" class="card-btn">Connect Direct ↗</a>
+            <button type="button" class="card-btn" onclick="openBookingModal()">Connect Direct ↗</button>
         </div>
 
         <!-- Box 2: Fiverr -->
@@ -784,7 +771,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             <label>Select Date:</label>
             <input type="date" id="callDate" required onchange="updateTimeSlots()">
 
-            <label>Select Time Slot:</label>
+            <label>Select 30-Min Time Slot:</label>
             <select id="timeSlot" required>
                 <option value="">-- First select a date above --</option>
             </select>
@@ -888,8 +875,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             `Hi Johnty, I want to schedule a consultation session.\n\n*Name:* ${name}\n*Email:* ${email}\n*Service:* ${service}\n*Date:* ${date}\n*Time Slot:* ${time} (IST)`
         );
         
-        // Replace 91YOURPHONENUMBER with your WhatsApp number (include country code like 91, no + or spaces)
-        const whatsappNumber = "91YOURPHONENUMBER"; 
+        // Replace with your actual WhatsApp phone number with country code (e.g., 919876543210, no + or spaces)
+        const whatsappNumber = "919360857892"; 
 
         window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
         
